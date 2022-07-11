@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Persons>
+  <Person>
+    <surname>Ахвердов 1</surname>
+    <name>Андрей 1</name>
+    <middleName>Александрович 1</middleName>
+    <telephoneNumber>89187669371</telephoneNumber>
+    <pasport>0708 100501</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 2</surname>
+    <name>Андрей 2</name>
+    <middleName>Александрович 2</middleName>
+    <telephoneNumber>89187669372</telephoneNumber>
+    <pasport>0708 100502</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 3</surname>
+    <name>Андрей 3</name>
+    <middleName>Александрович 3</middleName>
+    <telephoneNumber>89187669373</telephoneNumber>
+    <pasport>0708 100503</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 4</surname>
+    <name>Андрей 4</name>
+    <middleName>Александрович 4</middleName>
+    <telephoneNumber>89187669374</telephoneNumber>
+    <pasport>0708 100504</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 5</surname>
+    <name>Андрей 5</name>
+    <middleName>Александрович 5</middleName>
+    <telephoneNumber>89187669375</telephoneNumber>
+    <pasport>0708 100505</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 6</surname>
+    <name>Андрей 6</name>
+    <middleName>Александрович 6</middleName>
+    <telephoneNumber>89187669376</telephoneNumber>
+    <pasport>0708 100506</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 7</surname>
+    <name>Андрей 7</name>
+    <middleName>Александрович 7</middleName>
+    <telephoneNumber>89187669377</telephoneNumber>
+    <pasport>0708 100507</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 8</surname>
+    <name>Андрей 8</name>
+    <middleName>Александрович 8</middleName>
+    <telephoneNumber>89187669378</telephoneNumber>
+    <pasport>0708 100508</pasport>
+  </Person>
+  <Person>
+    <surname>Ахвердов 9</surname>
+    <name>Андрей 9</name>
+    <middleName>Александрович 9</middleName>
+    <telephoneNumber>89187669379</telephoneNumber>
+    <pasport>0708 100509</pasport>
+  </Person>
+</Persons>
