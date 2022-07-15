@@ -1,7 +1,10 @@
-﻿namespace WpfApp2
+﻿using System;
+
+namespace WpfApp3.Models
 {
     public class Employee
     {
+        public string Id { get; set; } = string.Empty;
         /// <summary>
         /// Фамилия
         /// </summary>
@@ -47,23 +50,28 @@
         /// </summary>
         public string Changer { get; set; } = string.Empty;
 
-        /// <summary>
-        /// Вывести данные о конкретном человеке
-        /// </summary>
-        public void ShowInformation()
-        {
-            Console.WriteLine(Surname);
-            Console.WriteLine(Name);
-            Console.WriteLine(MiddleName);
-            Console.WriteLine(TelephoneNumber);
-            Console.WriteLine(Pasport);
-        }
-        public void ShowLog()
-        {
-            Console.WriteLine(DateTimeChange);
-            Console.WriteLine(DataChanged);
-            Console.WriteLine(TypeOfChanges);
-            Console.WriteLine(Changer);
-        }
+    //    #region Методы
+    //    /// <summary>
+    //    /// Вывести данные о конкретном человеке
+    //    /// </summary>
+    //    public void ShowInformation()
+    //    {
+    //        Console.WriteLine(Surname);
+    //        Console.WriteLine(Name);
+    //        Console.WriteLine(MiddleName);
+    //        Console.WriteLine(TelephoneNumber);
+    //        Console.WriteLine(Pasport);
+    //    }
+    //    /// <summary>
+    //    /// Показать лог
+    //    /// </summary>
+    //    public void ShowLog()
+    //    {
+    //        Console.WriteLine(DateTimeChange);
+    //        Console.WriteLine(DataChanged);
+    //        Console.WriteLine(TypeOfChanges);
+    //        Console.WriteLine(Changer);
+    //    }
+    //    #endregion
     }
 }

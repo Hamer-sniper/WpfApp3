@@ -5,8 +5,71 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Сотрудник" Height="600" Width="800" MinWidth="220" MinHeight="600" Icon="/EmployeeIcon.png" Loaded="Window_Loaded">
+    <Grid Background="Black">        
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*" MinWidth="200" MaxWidth="200"/>
+            <ColumnDefinition Width="75*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Name="Menu" Grid.ColumnSpan="2" FontSize="15">
+            <MenuItem Header="_Файл">
+                <MenuItem Name="Exit" Header="Завершить приложение" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Name="Cancel" Header="Отменить редактирование"                
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding ConsultantViewModel}" Click="Cancel_Click">
+            </MenuItem>
+            <MenuItem Header="Показать лог"                
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding ConsultantViewModel}">
+            </MenuItem>
+        </Menu>
+
+        <StackPanel Margin="10" Grid.Column="0" Grid.Row="1">
+            <Image x:Name="EmployeeImage" Margin="0" Height="110" Width="180" Source="/Consultant.jpg"/>
+
+            <Label Content="Вы работаете как:" Width="180" Margin="0" Foreground="White" HorizontalContentAlignment="Center"/>
+            <ComboBox x:Name="EmployeeSelection" Margin="0 0 0 10" Width="180" HorizontalContentAlignment="Center" SelectionChanged="EmployeeSelection_SelectionChanged"/>
+
+            <Label x:Name="SurnameLabel" Width="180" Content="Фамилия" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Surname" Text="{Binding ElementName= ClientsList, Path=SelectedItem.Surname}"
+                     Margin="0" TextWrapping="Wrap" Width="180"/>
+            <Label x:Name="NameLabel" Width="180" Content="Имя" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Name" Text="{Binding ElementName= ClientsList, Path=SelectedItem.Name}"
+                     Margin="0" TextWrapping="Wrap" Width="180"/>
+            <Label x:Name="MiddleNameLabel" Width="180" Content="Отчество" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="MiddleName" Text="{Binding ElementName= ClientsList, Path=SelectedItem.MiddleName}"
+                     Margin="0" TextWrapping="Wrap" Width="180"/>
+            <Label x:Name="TelephoneNumberlabel" Width="180" Content="Номер телефона" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="TelephoneNumber" Text="{Binding ElementName= ClientsList, Path=SelectedItem.TelephoneNumber}"
+                     Margin="0" TextWrapping="Wrap" Width="180" TextChanged="TelephoneNumber_TextChanged"/>
+            <Label x:Name="PasportLabel" Width="180" Content="Паспорт" Foreground="White" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Pasport" Text="{Binding ElementName= ClientsList, Path=SelectedItem.Pasport}"
+                     Margin="0 0 0 10" TextWrapping="Wrap" Width="180"/>
+
+            <Button x:Name="AddButton" Margin="0 15 0 0" Content="Добавить" Width="180" HorizontalContentAlignment="Center" Click="AddButton_Click"/>
+            <Button x:Name="UpdateButton" Margin="0 15 0 15" Content="Обновить" Width="180" HorizontalContentAlignment="Center" Click="UpdateButton_Click"/>
+            <Button x:Name="DeleteButton" Margin="0 0 0 15" Content="Удалить" Width="180" HorizontalContentAlignment="Center" Click="DeleteButton_Click"/>
+        </StackPanel>
+        <ListView x:Name="ClientsList" Margin="0 10 10 10" Grid.Column="1" Grid.Row="1" Background="#FF969696">
+            <ListView.View>
+                <GridView x:Name="ClientsListGridView" AllowsColumnReorder="True">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Width="20">Id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Surname}" Width="100">Фамилия</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Имя</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Width="130">Отчество</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=TelephoneNumber}" Width="100">Номер телефона</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Pasport}" Width="100">Паспорт</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

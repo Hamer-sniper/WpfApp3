@@ -1,12 +1,14 @@
-﻿
-using WpfApp2.Interfaces;
-using WpfApp2.Models;
+﻿using WpfApp3.Interfaces;
+using WpfApp3.Models;
+using System.Collections.Generic;
+using System;
 
-namespace WpfApp2
+namespace WpfApp3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Menu()
+            // static void Main(string[] args)
         {
             // Авто создание xml
             //Consultant.AutoCreation();
