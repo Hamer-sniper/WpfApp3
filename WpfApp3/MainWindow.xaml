@@ -26,9 +26,17 @@
                       Command="{Binding SelectViewModelCommand}"
                       CommandParameter="{Binding ConsultantViewModel}" Click="Cancel_Click">
             </MenuItem>
-            <MenuItem Header="Показать лог"                
+            <MenuItem Name="SortBySurname" Header="Сортировка по фамилии"                          
                       Command="{Binding SelectViewModelCommand}"
-                      CommandParameter="{Binding ConsultantViewModel}">
+                      CommandParameter="{Binding ConsultantViewModel}" Click="SortBySurname_Click">
+            </MenuItem>
+            <MenuItem Name="SortByName" Header="Сортировка по имени"                
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding ConsultantViewModel}" Click="SortByName_Click">
+            </MenuItem>
+            <MenuItem Name="ShowLog" Header="Показать лог"                
+                      Command="{Binding SelectViewModelCommand}"
+                      CommandParameter="{Binding ConsultantViewModel}" Click="ShowLog_Click">
             </MenuItem>
         </Menu>
 
@@ -66,10 +74,9 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Имя</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Width="130">Отчество</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TelephoneNumber}" Width="100">Номер телефона</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Pasport}" Width="100">Паспорт</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Pasport}" Width="120">Паспорт</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
 </Window>

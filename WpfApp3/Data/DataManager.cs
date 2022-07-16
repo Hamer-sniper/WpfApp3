@@ -10,7 +10,7 @@ namespace WpfApp3.Data
 {
     public class DataManager
     {
-        private readonly string _dataFilePath = Environment.CurrentDirectory + @"\Databook.xml";
+        private readonly string _dataFilePath = Environment.CurrentDirectory + @"\Data\Databook.xml";
 
         public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
         {
@@ -21,7 +21,7 @@ namespace WpfApp3.Data
                 Name = uname,
                 MiddleName = umiddleName,                
                 TelephoneNumber = utelephoneNumber,
-                Pasport = upasport ?? "Паспорт не задан",
+                Pasport = string.IsNullOrWhiteSpace(upasport) ? "Паспорт не задан" : upasport,
 
                 DateTimeChange = DateTime.Now.ToString(),
                 DataChanged = "All",

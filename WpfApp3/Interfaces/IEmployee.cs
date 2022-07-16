@@ -20,11 +20,6 @@ namespace WpfApp3.Interfaces
         BitmapImage GetBitmap();
 
         /// <summary>
-        /// Отобразить меню
-        /// </summary>
-        void ShowMenu();
-
-        /// <summary>
         /// Изменить данные
         /// </summary>
         /// /// <param name="emp"></param>

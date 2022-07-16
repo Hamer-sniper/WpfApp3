@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace WpfApp3.Models
 {
@@ -46,32 +48,56 @@ namespace WpfApp3.Models
         public string TypeOfChanges { get; set; } = string.Empty;
 
         /// <summary>
-        /// Лицо имзенившее данные
+        /// Лицо, изменившее данные
         /// </summary>
         public string Changer { get; set; } = string.Empty;
 
-    //    #region Методы
-    //    /// <summary>
-    //    /// Вывести данные о конкретном человеке
-    //    /// </summary>
-    //    public void ShowInformation()
-    //    {
-    //        Console.WriteLine(Surname);
-    //        Console.WriteLine(Name);
-    //        Console.WriteLine(MiddleName);
-    //        Console.WriteLine(TelephoneNumber);
-    //        Console.WriteLine(Pasport);
-    //    }
-    //    /// <summary>
-    //    /// Показать лог
-    //    /// </summary>
-    //    public void ShowLog()
-    //    {
-    //        Console.WriteLine(DateTimeChange);
-    //        Console.WriteLine(DataChanged);
-    //        Console.WriteLine(TypeOfChanges);
-    //        Console.WriteLine(Changer);
-    //    }
-    //    #endregion
+        /// <summary>
+        /// Перечисление критериев сортировки
+        /// </summary>
+        public enum SortedCriterion
+        {
+            Surname,
+            Name
+        }
+
+        /// <summary>
+        /// Сортировка по имени
+        /// </summary>
+        private class SortBySurname : IComparer<Employee>
+        {
+            public int Compare(Employee x, Employee y)
+            {
+                Employee X = (Employee)x;
+                Employee Y = (Employee)y;
+
+                return string.Compare(X.Surname, Y.Surname);
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по фамилии
+        /// </summary>
+        private class SortByName : IComparer<Employee>
+        {
+            public int Compare(Employee x, Employee y)
+            {
+                Employee X = (Employee)x;
+                Employee Y = (Employee)y;
+
+                return string.Compare(X.Name, Y.Name);
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по критерию
+        /// </summary>
+        /// <param name="criterion"></param>
+        /// <returns>List<Employee></returns>
+        public static IComparer<Employee> SortedBy(SortedCriterion criterion)
+        {
+            if (criterion == SortedCriterion.Name) return new SortByName();
+            else return new SortBySurname();
+        }
     }
 }

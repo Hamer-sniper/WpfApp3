@@ -20,23 +20,31 @@ namespace WpfApp3.Models
         public BitmapImage GetBitmap()
         {
             consul.BeginInit();
-            consul.UriSource = new Uri(Environment.CurrentDirectory + @"\Consultant.jpg");
+            consul.UriSource = new Uri(Environment.CurrentDirectory + @"\Pictures\Consultant.jpg");
             consul.EndInit();
             return consul;
         }
 
         /// <summary>
-        /// Удалить данные
+        /// Удалить запись
         /// </summary>
         /// <param name="emp"></param>
         public void Delete(Employee emp)
         {
-
+            // Консультанту нельзя удалять записи  
         }
 
+        /// <summary>
+        /// Создать запись
+        /// </summary>
+        /// <param name="usurname"></param>
+        /// <param name="uname"></param>
+        /// <param name="umiddleName"></param>
+        /// <param name="utelephoneNumber"></param>
+        /// <param name="upasport"></param>
         public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
         {
-            //_dataManager.Create(usurname, uname, umiddleName, utelephoneNumber, upasport);
+            // Консультанту нельзя создавать записи            
         }
 
         /// <summary>
@@ -52,36 +60,6 @@ namespace WpfApp3.Models
                 pasp.Pasport = "******";
             }
             return employees;
-        }        
-
-        /// <summary>
-        /// Меню консультанта
-        /// </summary>
-        public void ShowMenu()
-        {
-            _dataManager.ReadFromXml();
-
-            // Для консольного
-            //Console.WriteLine("Вы работаете как Консультант.");
-            //Console.WriteLine("1 - Вывод информации");
-            //Console.WriteLine("2 - Изменить номер телефона");
-            //Console.WriteLine("3 - Выход");
-
-            //bool exit = true;
-            //while (exit)
-            //{
-            //    Program.Header();
-            //    switch (Console.ReadLine())
-            //    {
-            //        case "1": _dataManager.GetAll(); break;
-            //        case "2": Update(); break;
-            //        case "3": exit = false; break;
-            //        default:
-            //            Console.WriteLine("Выберите корректное значение - от 1 до 3");
-            //            Program.Header();
-            //            break;
-            //    }
-            //}
         }
 
         /// <summary>
@@ -91,34 +69,16 @@ namespace WpfApp3.Models
         {
             var employees = _dataManager.ReadFromXml();
 
-            //Console.Write("У какого клиента следует изменить номер телефона?: ");
-
-            //var clientNumber = int.Parse(Console.ReadLine());
-            var clientNumber = emp.Id;
-            //var counter = 0;            
-
-            //Console.WriteLine("Если оставить строку пустой, значение не изменится.");
-
             foreach (var employee in employees)
             {
-                //counter++;                
+                if (employee.Id == emp.Id)
+                {                    
+                    string changesString = string.Empty;                  
 
-                if (employee.Id == clientNumber)
-                {
-                    //employee.ShowInformation();
-
-                    //input = string.Empty;
-                    string changesString = string.Empty;
-
-                    //Console.Write("Введите новый номер телефона: ");
-                    //input = Console.ReadLine();
-                    var input = emp.TelephoneNumber;
-
-                    if (string.IsNullOrEmpty(input) == false)
+                    if (emp.TelephoneNumber != employee.TelephoneNumber)
                     {
-                        changesString += $"Номер телефона \"{employee.TelephoneNumber}\" изменен на \"{input}\" ";
-                        employee.TelephoneNumber = input;
-                        //input = string.Empty;
+                        changesString += $"Номер телефона \"{employee.TelephoneNumber}\" изменен на \"{emp.TelephoneNumber}\" ";
+                        employee.TelephoneNumber = emp.TelephoneNumber;                      
                     }
 
                     if (string.IsNullOrEmpty(changesString) == false)

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WpfApp3.Models;
 using WpfApp3.Interfaces;
 using WpfApp3.Data;
+using WpfApp3.Log;
 
 namespace WpfApp3
 {
@@ -56,9 +57,12 @@ namespace WpfApp3
             ClientsList.ItemsSource = employee.GetAll();
             EmployeeImage.Source = employee.GetBitmap();
 
-            AddButton.IsEnabled = EmployeeSelection.SelectedIndex == 1 && !string.IsNullOrWhiteSpace(TelephoneNumber.Text);
-            UpdateButton.IsEnabled = !string.IsNullOrWhiteSpace(TelephoneNumber.Text) && ClientsList.SelectedItem != null;
-            DeleteButton.IsEnabled = EmployeeSelection.SelectedIndex == 1 && !string.IsNullOrWhiteSpace(TelephoneNumber.Text) && ClientsList.SelectedItem != null;
+            if (!string.IsNullOrWhiteSpace(TelephoneNumber.Text))
+            {
+                AddButton.IsEnabled = EmployeeSelection.SelectedIndex == 1;
+                UpdateButton.IsEnabled = ClientsList.SelectedItem != null && ClientsList.SelectedItem != null;
+                DeleteButton.IsEnabled = ClientsList.SelectedItem != null && EmployeeSelection.SelectedIndex == 1 && ClientsList.SelectedItem != null;
+            }
 
             Surname.IsEnabled = EmployeeSelection.SelectedIndex == 1;
             Name.IsEnabled = EmployeeSelection.SelectedIndex == 1;
@@ -80,26 +84,28 @@ namespace WpfApp3
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var emp = (Employee)ClientsList.SelectedItem;
+            var emp = (Employee)ClientsList.SelectedItem;            
+            employee.Update(emp);
+            ClientsList.ItemsSource = employee.GetAll();
             ClientsList.Items.Refresh();
-            employee.Update(emp);            
         }
 
         private void TelephoneNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
-            // Не сохранять запись без введеного номера телефона.
             AddButton.IsEnabled = EmployeeSelection.SelectedIndex == 1;
 
+            // Не сохранять запись без введеного номера телефона.
             if (string.IsNullOrWhiteSpace(TelephoneNumber.Text))
-            {                
-                UpdateButton.IsEnabled = false;
+            {
                 AddButton.IsEnabled = false;
+                UpdateButton.IsEnabled = false;
+                DeleteButton.IsEnabled = false;
             }
             if (!string.IsNullOrWhiteSpace(TelephoneNumber.Text) && ClientsList.SelectedItem != null)
             {
                 UpdateButton.IsEnabled = true;                
                 DeleteButton.IsEnabled = EmployeeSelection.SelectedIndex == 1;
-            }            
+            }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -107,11 +113,35 @@ namespace WpfApp3
             var emp = (Employee)ClientsList.SelectedItem;
             employee.Delete(emp);
             ClientsList.ItemsSource = employee.GetAll();
+            ClientsList.Items.Refresh();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             ClientsList.ItemsSource = employee.GetAll();
+            ClientsList.Items.Refresh();
+        }
+
+        private void SortBySurname_Click(object sender, RoutedEventArgs e)
+        {
+            var emp = employee.GetAll();
+            emp.Sort(Employee.SortedBy(Employee.SortedCriterion.Surname));
+            ClientsList.ItemsSource = emp;
+            ClientsList.Items.Refresh();
+        }
+
+        private void SortByName_Click(object sender, RoutedEventArgs e)
+        {
+            var emp = employee.GetAll();
+            emp.Sort(Employee.SortedBy(Employee.SortedCriterion.Name));
+            ClientsList.ItemsSource = emp;
+            ClientsList.Items.Refresh();
+        }
+
+        private void ShowLog_Click(object sender, RoutedEventArgs e)
+        {
+            LogWindow logWindow = new LogWindow();
+            logWindow.Show();
         }
     }
 }
