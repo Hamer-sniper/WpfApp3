@@ -14,11 +14,11 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="25"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Row="0" Name="Menu" Grid.ColumnSpan="2" FontSize="15">
+        <Menu Grid.Row="0" Name="Menu" Grid.ColumnSpan="2" FontSize="15" >
             <MenuItem Header="_Файл">
                 <MenuItem Name="Exit" Header="Завершить приложение" Click="Exit_Click"/>
             </MenuItem>
@@ -74,7 +74,7 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Width="100">Имя</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Width="130">Отчество</GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=TelephoneNumber}" Width="100">Номер телефона</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Pasport}" Width="120">Паспорт</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Pasport}" Width="110">Паспорт</GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

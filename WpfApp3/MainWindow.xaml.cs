@@ -12,6 +12,7 @@ namespace WpfApp3
     public partial class MainWindow : Window
     {
         IEmployee employee = new Consultant();
+        private readonly DataManager _dataManager = new DataManager();
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +60,7 @@ namespace WpfApp3
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            DataManager.Create(Surname.Text, Name.Text, MiddleName.Text, TelephoneNumber.Text, Pasport.Text);
+            _dataManager.Create(Surname.Text, Name.Text, MiddleName.Text, TelephoneNumber.Text, Pasport.Text);
             ClientsList.ItemsSource = employee.GetAll();
             ClientsList.Items.Refresh();
         }
@@ -98,7 +99,7 @@ namespace WpfApp3
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var emp = (Employee)ClientsList.SelectedItem;
-            DataManager.Delete(emp);
+            _dataManager.Delete(emp);
             ClientsList.ItemsSource = employee.GetAll();
             ClientsList.Items.Refresh();
         }

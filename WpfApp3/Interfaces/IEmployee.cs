@@ -19,7 +19,7 @@ namespace WpfApp3.Interfaces
         /// Изменить данные
         /// </summary>
         /// /// <param name="emp"></param>
-        public void Update(Employee emp);
+        void Update(Employee emp);
 
         /// <summary>
         /// Получить все данные

@@ -9,6 +9,7 @@ namespace WpfApp3.Models
 {
     public class Manager : IEmployee
     {
+        private readonly DataManager _dataManager = new DataManager();
         private readonly BitmapImage manag = new BitmapImage();
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace WpfApp3.Models
         /// <returns></returns>
         public List<Employee> GetAll()
         {
-            return DataManager.ReadFromXml();
+            return _dataManager.ReadFromXml();
         }            
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace WpfApp3.Models
         /// </summary>
         public void Update(Employee emp)
         {
-            var employees = DataManager.ReadFromXml();
+            var employees = _dataManager.ReadFromXml();
 
             foreach (var employee in employees)
             {
@@ -86,7 +87,7 @@ namespace WpfApp3.Models
                 }
                 break;
             }
-            DataManager.AddToXmlFromList(employees);
+            _dataManager.AddToXmlFromList(employees);
         }
     }
 }

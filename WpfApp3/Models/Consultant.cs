@@ -3,12 +3,14 @@ using WpfApp3.Interfaces;
 using WpfApp3.Log;
 using System;
 using System.Windows.Media.Imaging;
+using WpfApp3.Models;
 using System.Collections.Generic;
 
 namespace WpfApp3.Models
 {
     public class Consultant : IEmployee
     {
+        private readonly DataManager _dataManager = new DataManager();
         private readonly BitmapImage consul = new BitmapImage();
 
         /// <summary>
@@ -21,7 +23,7 @@ namespace WpfApp3.Models
             consul.UriSource = new Uri(Environment.CurrentDirectory + @"\Pictures\Consultant.jpg");
             consul.EndInit();
             return consul;
-        }           
+        }
 
         /// <summary>
         /// Вывод
@@ -30,7 +32,7 @@ namespace WpfApp3.Models
         public List<Employee> GetAll()
         {
             // Скрыть данные паспорта для консультанта
-            var employees = DataManager.ReadFromXml();
+            var employees = _dataManager.ReadFromXml();
             foreach (var pasp in employees)
             {
                 pasp.Pasport = "******";
@@ -43,7 +45,7 @@ namespace WpfApp3.Models
         /// </summary>        
         public void Update(Employee emp)
         {
-            var employees = DataManager.ReadFromXml();
+            var employees = _dataManager.ReadFromXml();
 
             foreach (var employee in employees)
             {
@@ -71,7 +73,7 @@ namespace WpfApp3.Models
                     break;
                 }
             }
-            DataManager.AddToXmlFromList(employees);
+            _dataManager.AddToXmlFromList(employees);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Номер телефона изменен!");

@@ -20,7 +20,7 @@ namespace WpfApp3.Data
         /// <param name="umiddleName"></param>
         /// <param name="utelephoneNumber"></param>
         /// <param name="upasport"></param>
-        public static void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
+        public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
         {
             var employee = new Employee()
             {
@@ -51,7 +51,7 @@ namespace WpfApp3.Data
         /// Автосоздание данных
         /// </summary>        
         /// <returns>consultants</returns>
-        private static void AutoCreation()
+        private void AutoCreation()
         {
             var employees = new List<Employee>();
 
@@ -84,7 +84,7 @@ namespace WpfApp3.Data
         /// Удалить запись
         /// </summary>
         /// <param name="emp"></param>
-        public static void Delete(Employee emp)
+        public void Delete(Employee emp)
         {
             var employees = ReadFromXml();
             var tempEmployee = emp;
@@ -104,7 +104,7 @@ namespace WpfApp3.Data
         /// <summary>
         /// Запись в xml
         /// </summary>
-        public static void AddToXmlFromList(List<Employee> employees)
+        public void AddToXmlFromList(List<Employee> employees)
         {
             XElement persons = new XElement("Persons");
 
@@ -129,7 +129,7 @@ namespace WpfApp3.Data
         /// Чтение из xml
         /// </summary>        
         /// <returns>consultants</returns>
-        public static List<Employee> ReadFromXml()
+        public List<Employee> ReadFromXml()
         {
             var employees = new List<Employee>();
             string xid = "", xsurname = "", xname = "", xmiddleName = "", xtelephoneNumber = "", xpasport = "";
