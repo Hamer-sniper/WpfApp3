@@ -3,14 +3,12 @@ using WpfApp3.Interfaces;
 using WpfApp3.Log;
 using System;
 using System.Windows.Media.Imaging;
-using WpfApp3.Models;
 using System.Collections.Generic;
 
 namespace WpfApp3.Models
 {
     public class Consultant : IEmployee
     {
-        private readonly DataManager _dataManager = new DataManager();
         private readonly BitmapImage consul = new BitmapImage();
 
         /// <summary>
@@ -23,29 +21,7 @@ namespace WpfApp3.Models
             consul.UriSource = new Uri(Environment.CurrentDirectory + @"\Pictures\Consultant.jpg");
             consul.EndInit();
             return consul;
-        }
-
-        /// <summary>
-        /// Удалить запись
-        /// </summary>
-        /// <param name="emp"></param>
-        public void Delete(Employee emp)
-        {
-            // Консультанту нельзя удалять записи  
-        }
-
-        /// <summary>
-        /// Создать запись
-        /// </summary>
-        /// <param name="usurname"></param>
-        /// <param name="uname"></param>
-        /// <param name="umiddleName"></param>
-        /// <param name="utelephoneNumber"></param>
-        /// <param name="upasport"></param>
-        public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
-        {
-            // Консультанту нельзя создавать записи            
-        }
+        }           
 
         /// <summary>
         /// Вывод
@@ -54,7 +30,7 @@ namespace WpfApp3.Models
         public List<Employee> GetAll()
         {
             // Скрыть данные паспорта для консультанта
-            var employees = _dataManager.ReadFromXml();
+            var employees = DataManager.ReadFromXml();
             foreach (var pasp in employees)
             {
                 pasp.Pasport = "******";
@@ -67,7 +43,7 @@ namespace WpfApp3.Models
         /// </summary>        
         public void Update(Employee emp)
         {
-            var employees = _dataManager.ReadFromXml();
+            var employees = DataManager.ReadFromXml();
 
             foreach (var employee in employees)
             {
@@ -95,7 +71,7 @@ namespace WpfApp3.Models
                     break;
                 }
             }
-            _dataManager.AddToXmlFromList(employees);
+            DataManager.AddToXmlFromList(employees);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Номер телефона изменен!");

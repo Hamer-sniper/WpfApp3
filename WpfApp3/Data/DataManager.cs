@@ -10,9 +10,17 @@ namespace WpfApp3.Data
 {
     public class DataManager
     {
-        private readonly string _dataFilePath = Environment.CurrentDirectory + @"\Data\Databook.xml";
+        private readonly static string _dataFilePath = Environment.CurrentDirectory + @"\Data\Databook.xml";
 
-        public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
+        /// <summary>
+        /// Создать новую запись
+        /// </summary>
+        /// <param name="usurname"></param>
+        /// <param name="uname"></param>
+        /// <param name="umiddleName"></param>
+        /// <param name="utelephoneNumber"></param>
+        /// <param name="upasport"></param>
+        public static void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
         {
             var employee = new Employee()
             {
@@ -43,7 +51,7 @@ namespace WpfApp3.Data
         /// Автосоздание данных
         /// </summary>        
         /// <returns>consultants</returns>
-        private void AutoCreation()
+        private static void AutoCreation()
         {
             var employees = new List<Employee>();
 
@@ -73,9 +81,30 @@ namespace WpfApp3.Data
         }
 
         /// <summary>
+        /// Удалить запись
+        /// </summary>
+        /// <param name="emp"></param>
+        public static void Delete(Employee emp)
+        {
+            var employees = ReadFromXml();
+            var tempEmployee = emp;
+
+            foreach (var employee in employees)
+            {
+                if (employee.Id == emp.Id)
+                {
+                    tempEmployee = employee;
+                    employees.Remove(tempEmployee);
+                    break;
+                }
+            }
+            AddToXmlFromList(employees);
+        }
+
+        /// <summary>
         /// Запись в xml
         /// </summary>
-        public void AddToXmlFromList(List<Employee> employees)
+        public static void AddToXmlFromList(List<Employee> employees)
         {
             XElement persons = new XElement("Persons");
 
@@ -100,7 +129,7 @@ namespace WpfApp3.Data
         /// Чтение из xml
         /// </summary>        
         /// <returns>consultants</returns>
-        public List<Employee> ReadFromXml()
+        public static List<Employee> ReadFromXml()
         {
             var employees = new List<Employee>();
             string xid = "", xsurname = "", xname = "", xmiddleName = "", xtelephoneNumber = "", xpasport = "";

@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfApp3.Models;
 using WpfApp3.Interfaces;
 using WpfApp3.Data;
-using WpfApp3.Log;
 
 namespace WpfApp3
 {
@@ -72,7 +59,7 @@ namespace WpfApp3
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            employee.Create(Surname.Text, Name.Text, MiddleName.Text, TelephoneNumber.Text, Pasport.Text);
+            DataManager.Create(Surname.Text, Name.Text, MiddleName.Text, TelephoneNumber.Text, Pasport.Text);
             ClientsList.ItemsSource = employee.GetAll();
             ClientsList.Items.Refresh();
         }
@@ -111,7 +98,7 @@ namespace WpfApp3
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var emp = (Employee)ClientsList.SelectedItem;
-            employee.Delete(emp);
+            DataManager.Delete(emp);
             ClientsList.ItemsSource = employee.GetAll();
             ClientsList.Items.Refresh();
         }

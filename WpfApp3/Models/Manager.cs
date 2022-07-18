@@ -3,14 +3,12 @@ using WpfApp3.Interfaces;
 using WpfApp3.Log;
 using System;
 using System.Windows.Media.Imaging;
-using WpfApp3.Models;
 using System.Collections.Generic;
 
 namespace WpfApp3.Models
 {
     public class Manager : IEmployee
     {
-        private readonly DataManager _dataManager = new DataManager();
         private readonly BitmapImage manag = new BitmapImage();
 
         /// <summary>
@@ -31,50 +29,15 @@ namespace WpfApp3.Models
         /// <returns></returns>
         public List<Employee> GetAll()
         {
-            return _dataManager.ReadFromXml();
-        }
-
-        /// <summary>
-        /// Создать запись
-        /// </summary>
-        /// <param name="usurname"></param>
-        /// <param name="uname"></param>
-        /// <param name="umiddleName"></param>
-        /// <param name="utelephoneNumber"></param>
-        /// <param name="upasport"></param>
-        public void Create(string usurname, string uname, string umiddleName, string utelephoneNumber, string upasport)
-        {
-            _dataManager.Create(usurname, uname, umiddleName, utelephoneNumber, upasport);
-        }
-
-
-        /// <summary>
-        /// Удалить запись
-        /// </summary>
-        /// <param name="emp"></param>
-        public void Delete(Employee emp)
-        {
-            var employees = _dataManager.ReadFromXml();
-            var tempEmployee = emp;
-
-            foreach (var employee in employees)
-            {
-                if (employee.Id == emp.Id)
-                {
-                    tempEmployee = employee;
-                    employees.Remove(tempEmployee);
-                    break;
-                }
-            }                
-            _dataManager.AddToXmlFromList(employees);
-        }
+            return DataManager.ReadFromXml();
+        }            
 
         /// <summary>
         /// Изменить всю информацию
         /// </summary>
         public void Update(Employee emp)
         {
-            var employees = _dataManager.ReadFromXml();
+            var employees = DataManager.ReadFromXml();
 
             foreach (var employee in employees)
             {
@@ -123,7 +86,7 @@ namespace WpfApp3.Models
                 }
                 break;
             }
-            _dataManager.AddToXmlFromList(employees);
+            DataManager.AddToXmlFromList(employees);
         }
     }
 }
